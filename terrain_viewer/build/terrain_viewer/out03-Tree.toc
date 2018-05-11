@@ -1,9 +1,0 @@
-('terrains',
- 'terrains',
- [],
- 'DATA',
- [('terrains\\flat.smr-terrain', 'terrains\\flat.smr-terrain', 'DATA'),
-  ('terrains\\flattish.smr-terrain',
-   'terrains\\flattish.smr-terrain',
-   'DATA'),
-  ('terrains\\test.smr-terrain', 'terrains\\test.smr-terrain', 'DATA')])
