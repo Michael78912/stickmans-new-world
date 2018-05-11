@@ -1,0 +1,6 @@
+Hi! thanks for downloading this! at the time of this, there are only two terrain files
+that actually come with this, located in the installation path (most likely C:\Program Files (x86)\ SMR Terrain Viewer\terrains) the first one, flat.smr-terrain is the default one
+displayed just by running terrain_viewer.exe itself. all the information for creating
+more is in flat.smr-terrain. (flattish.smr-terrain was just for me expirementing with
+headers and such.) enjoy!
+NOTE this does not have a liscence, so please dont go around distributing it. thanks!

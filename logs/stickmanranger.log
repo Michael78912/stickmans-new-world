@@ -1,0 +1,43 @@
+2018-02-10 15:46:17.97 started this log (i've been working on this game for a while, and decided to start a log)
+2018-02-10 15:48:43.70 discovered json module use that for settings 
+2018-02-12 17:44:39.45 started developing icons for weapons \ compos 
+2018-02-12 19:34:17.68 haviing trouble with class_ library 
+2018-02-19 16:49:27.22 completed command line installers for windows and linux. not even close to finishing the game yet, but for some reason I wanted to do this :) 
+2018-02-20 19:07:39.76 discovered way to keep updated link that downloads it (really hard) Yay! started building auto_update.py 
+2018-02-22 17:46:54.95 created auto_install.py. tested for windows, not yet for linux. only compatible with those two. 
+2018-02-23 18:19:38.52 perfected auto_install.py, started learning about internet access with C# for a web installer 
+2018-02-25 17:15:51.00 started working with tkinter, threading, and Queue to make auto_install.py graphical 
+2018-03-01 16:15:59.26 started making terrain.py, keep working on auto_update.py, and combined dicts.py into database.py 
+2018-03-01 18:35:30.20 finished syntax and documentation for terrain (.smr-terrain files) and am still working on the processing of the file's header 
+2018-03-02 17:58:09.10 finished header processing algorithm for terrain 
+2018-03-04 14:31:56.83 got class_ library working again, stopped the mess of all the importing between files 
+2018-03-05 16:25:02.60 changed games name to "stickman's new world". thanks to Modding Started! from the Dan-Ball discord for that. also changed all download links to Microsoft OneDrive (because I have a terrabyte of space there :))\ 
+2018-03-05 16:26:54.16 also quit the the thought about using C# for a web instller because there are easier ways to do it 
+2018-03-05 18:21:10.91 keep working on auto_install.py (lots of stuff I've never used before) and built a seperate module (run_auto_install.py) to use subprocess to run auto_install.py and kill main thread. 
+2018-03-06 17:12:38.31 completely finished auto_update.py for windows, still untested for linux, but works perfectly on windows. also added a bit to main.py that will check for updates (run check_update.py) finished check_update.py and run_auto_install.py 
+2018-03-08 16:18:53.21 created 'launcher.desktop' for linux machines (run without terminal, can run by double-clicking) 
+2018-03-08 18:34:09.68 started and finished settings.py. I am proud of myself right now! :) :) :} :} :] :] ;) 
+2018-03-09 17:44:49.78 wrote encrypt.py, started thinking about splitting settings.json into settings.json and config.json 
+2018-03-10  8:59:11.93 wrote mod_install.py (to install pygame and cryptography on a linux system if not installed)  
+2018-03-13  0:02:33.29 discovered cx_Freeze which I will use for all linux distributions of my game! i will still use py2exe for windows because i am very comfortable with it and i know it will work for sure! 
+2018-03-13  0:05:47.73 i havent been able to work on this very much recently, i hope i can change that soon with spring break coming up :) 
+2018-03-13 20:55:32.91 started re-writing save.py, improved encrypt.py, made another environment variable for the user directory for myself, and a million other tiny things as well 
+2018-03-15 21:31:57.97 got terrain.py into a workable state, but it still needs some perfection, and got 2 working terrains 
+2018-03-17 18:43:20.61 perfected terrain.py, I believe there are preciscely 0 problems :), started making the standalone for file associations (located in terrain_viewer\ ) and having some difficulties with that 
+2018-03-20 10:28:16.53 just got terrain_proto.py working. it was a real pain getting that to work.  
+2018-03-20 10:28:42.78 oh, im also going to change it's name to terrain_viewer.py, and compile it for windows. 
+2018-03-27 17:44:31.00 got back to work, started trying to make a draggable? (is it a word????????) rectangle 
+2018-03-27 21:16:50.61 started thinking of bug_report.py, because i discovered how to send emails with python  
+2018-03-27 21:16:55.14 started thinking of bug_report.py, because i discovered how to send emails with python  
+2018-03-29 20:28:55.02 started and completeley finished bugreport.py. i am really proud of this one. i did my best to make the password hidden, but if someone tries hard, they can find it. i am not going to give it away, though! 
+2018-03-31 22:06:00.24 worked a lot on character_image.py, started and started and finished request_email.py, and updated the auto updater (ironic :)) also upgraded the python version 3.4- it is exciting because i can use the f'{locals}' type string! 
+2018-04-03 20:39:52.67 mostly went through a lot of annoying thins. having trouble getting cx_Freeze to work with python3.6 and tkinter 
+2018-04-12 16:56:10.47 just decided to swith to PyInstaller instead of cx_Freeze. I was having quite some difficulty with cx_Freeze and some weird DLL files. plus, this seems a lot easier to use! 
+2018-04-17 20:25:18.96 worked on character_image.py, wrote sprite.py, and events.py with only _Event and Quit objects so far (i could not think of any other events.) :) 
+2018-04-18 19:00:14.64 checked out "multiprocessing" module as having some trouble with "threading" 
+2018-04-25 17:31:28.39 got multithreading to stop saying "python.exe has stopped working" 
+2018-04-28 17:37:58.89 got a difficult function down for finding out where the closest to the top of a certain terrain (SMRSprite.find_closest_of) also started switching terrain.py to numpy for 2D arrays 
+2018-04-29 15:15:46.98 got colour for stickmen correct, finally, thanks to Zeo from dan-ball discord 
+2018-05-01 19:55:43.00 got a bit of work done on enemy_head.py, and made a lot of enemy head pictures 
+2018-05-07 18:25:47.27 developed webpage, and thanks to Zeodexic and the other guy who changes his name a lot who made their website (at the time "hi i'm will"? for telling me how to get a super cheap domain. 
+2018-05-08 20:18:50.91 got a good website on github, not got a domain yet, but this will do for now, and worked a bit on enemy_image.py 

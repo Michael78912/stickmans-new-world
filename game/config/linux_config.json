@@ -1,0 +1,9 @@
+{
+	"version": "0.0.0.0",
+	"system": "linux",
+	"build": 1,
+	"install_path": "/opt/stickmanranger/",
+	"install_path_game": "/opt/stickmanranger/game/",
+	"executable": "launcher.desktop",
+	"data_directory": "/home/{}/.stickman_new_world/"
+}
