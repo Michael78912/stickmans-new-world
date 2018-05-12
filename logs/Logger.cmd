@@ -4,7 +4,7 @@
 
 SET FILE=stickmanranger.log
 
-:A
-    SET /P "INPUT=>> "
-    ECHO %DATE% %TIME% %INPUT% >> %FILE%
-    GOTO A
+
+SET /P "INPUT=>> "
+ECHO %DATE% %TIME% %INPUT% >> %FILE%
+BASH -c "bash upload.sh"

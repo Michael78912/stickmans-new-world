@@ -4,6 +4,8 @@ it really has no code value, other than when it sorts the usable levels.
 
 import json as _json
 import os.path
+import save
+import class_ as _class_
 
 import pygame as _pg
 
@@ -63,6 +65,7 @@ ALL_LEVELS = ALL_LEVELS[:]
 MAIN_GAME_STATE = {
     'SETTINGS': SETTINGS,
     'GAME_DATA': {
+        save.read_file(),
     },
     'MAIN_DISPLAY_SURF': SURFACE,
 }

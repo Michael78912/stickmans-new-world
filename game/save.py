@@ -30,7 +30,7 @@ def read_file():
 		open_file.write(data_text)
 
 	ini_file = inifile.IniFile(data_file)
-	print(ini_file.to_dict())
+	#print(ini_file.to_dict())
 
 	keys = ini_file.keys()
 	values = ini_file.values()
@@ -39,18 +39,35 @@ def read_file():
 		if '.' in key:
 			# value is in a category
 			klass, prop = key.split('.')
-			print(klass, prop)
+			#print(klass, prop)
 			try:
 				game_state[klass]
 			except KeyError:
 				game_state[klass] = {}
 
-			game_state[klass][prop] = prop
+			game_state[klass][prop] = value
 
 		else:
 			game_state[key] = value
-	print(game_state == ini_file.to_dict())
+
+	return game_state
+	
+
+def write_file(data):
+	if isinstance(data, dict):
+		data = to_inifile(data)
+	encrypt.encrypt(data)
+
+def to_inifile(dict_):
+	file_str = ''
+	for key in dict_:
+		file_str += '[{}]\n'.format(key)
+		for i in dict_[key]:
+			file_str += '{}={}\n'.format(i, dict_[key][i])
+		file_str += '\n'
+	return file_str
 
 if __name__ == '__main__':
-	encrypt.encrypt(open('misc\\shello.ini').read())
-	print(read_file())
+	a = read_file()
+	print(to_inifile(a))
+	write_file(a)

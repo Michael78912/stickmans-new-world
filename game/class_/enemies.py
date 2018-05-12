@@ -1,4 +1,7 @@
-from enemy import Enemy
+try:
+	from enemy import Enemy
+except ImportError:
+	from .enemy import Enemy
 import random
 
 BACKWARDS = 'backwards'

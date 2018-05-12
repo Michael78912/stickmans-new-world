@@ -2,8 +2,13 @@
 each of these classes is a class of stickman from 
 stickmanranger.
 """
-from _internal import *
-from character import Character
+try:
+	from _internal import *
+	from character import Character
+
+except ImportError:
+	from ._internal import *
+	from .character import Character	
 
 DEFAULT_STATS =(50, 0, 0, 0, 0)
 
@@ -11,27 +16,27 @@ class Swordsman(Character):
 	image = PICS['characters']['swordsman']
 
 	def __init__(self, player_num, stats=DEFAULT_STATS):
-		Class.__init__(self, 'swordsman', stats)
+		Character.__init__(self, 'swordsman', stats)
 
-class Angel(Class):
+class Angel(Character):
 	image = PICS['characters']['angel']
 	def __init__(self, player_num, stats=DEFAULT_STATS):
-		Class.__init__(self, 'angel', stats)
+		Character.__init__(self, 'angel', stats)
 
-class Archer(Class):
+class Archer(Character):
 	image=PICS['characters']['archer']
 
 	def __init__(self, player_num, stats=DEFAULT_STATS):
-		Class.__init__(self, player_num, stats)
+		Character.__init__(self, player_num, stats)
 
-class Spearman(Class):
+class Spearman(Character):
 	image=PICS['characters']['spearman']
 
 	def __init__(self, player_num, stats=DEFAULT_STATS):
-		Class.__init__(self, player_num, stats)
+		Character.__init__(self, player_num, stats)
 
-class Wizard(Class):
+class Wizard(Character):
 	image=PICS['characters']['wizard']
 	def __init__(self, player_num, stats=DEFAULT_STATS):
-		Class.__init__(self, player_num, stats)
+		Character.__init__(self, player_num, stats)
 

@@ -18,8 +18,10 @@ from pygame.transform import scale
 from pygame.locals import QUIT
 import numpy
 
-from _internal import *
-
+try:
+	from _internal import *
+except ImportError:
+	from ._internal import *
 
 with open('C:\\Users\\Michael\\FFFFFFFFFF.TXT', 'a') as s:
 	s.write(DIR)

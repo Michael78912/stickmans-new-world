@@ -103,7 +103,8 @@ def change_colour_surface(surface, r, g, b):
 #             if line[index] != 0:
 #                 line[index] = 
 
-PICS = _gather_pics(DIR + '\\data')
+PICS = _gather_pics(os.path.join(DIR, 'data'))
+print(DIR)
 TDIR = os.path.join(DIR, 'terrains')
 
 

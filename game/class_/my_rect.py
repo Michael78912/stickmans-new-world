@@ -1,7 +1,7 @@
 try: from _internal import *
 except ImportError: from ._internal import *
 import pygame as pg
-
+col = COLOURS
 
 class MyRect(pg.Rect):
     """this class is simply for keeping track of 

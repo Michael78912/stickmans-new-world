@@ -52,5 +52,3 @@ class Class:
         on the top, but not above or underground.
         """
         surface.blit(self.image, surface.terrain.array[0])
-
-    def draw(self,)
