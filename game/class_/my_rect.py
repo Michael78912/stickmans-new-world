@@ -1,5 +1,9 @@
-try: from _internal import *
-except ImportError: from ._internal import *
+try: 
+    from _internal import *
+    from smr_error import SMRError
+except ImportError: 
+    from ._internal import *
+    from .smr_error import SMRError
 import pygame as pg
 col = COLOURS
 
@@ -120,3 +124,22 @@ class MyRect(pg.Rect):
         _Box((self.width, self.height), self.colour, (self.x, self.y), surf)
         self.PicInside = None
         self.PicReprInside = ''
+
+def _Box(size, colour, pos, surface, alpha=None, image=None) -> tuple:
+    """
+    return a square rectangle, surface pair
+    uses MyRect
+    """
+    print(pos)
+    new_surf = pg.surface.Surface(size)
+    new_surf.fill(colour)
+
+    if alpha is not None:
+        new_surf.set_alpha(alpha)
+
+    surface.blit(new_surf, pos)
+
+    if image is not None:
+        surface.blit(image, pos)
+
+    return MyRect(new_surf.get_rect(topleft=pos)), new_surf

@@ -1,5 +1,6 @@
 import urllib.request
 import json
+import os
 try:
     import httplib
     
@@ -26,7 +27,7 @@ def check_update():
 	with urllib.request.urlopen(VER_URL) as response:
 		version = response.read().decode()
 	# decode the current version from "settings.json"
-	current_version = json.JSONDecoder().decode(open('windows_config.json').read())['version']
+	current_version = json.JSONDecoder().decode(open(os.path.join('config','windows_config.json')).read())['version']
 	# if the version is the same
 	print(current_version, version)
 

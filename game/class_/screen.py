@@ -36,3 +36,11 @@ class Screen:
         
         else:
             self.spawn_mode = spawn_mode
+
+    def start(self):
+        raise NotImplementedError
+
+
+class PeacefulScreen(Screen):
+    def __init__(self):
+        super().__init__((), (), None)

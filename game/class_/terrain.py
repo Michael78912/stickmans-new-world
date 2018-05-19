@@ -1,5 +1,5 @@
 """terrain.py
-takes all terrain files (terrain\*) and converts them
+takes all terrain files (terrain/*) and converts them
 into stickmanranger terrain objects.
 NOTE: may want to run this code in a background thread,
 as it will probably take a while and cause graphics
@@ -46,7 +46,8 @@ class Terrain:
 	def_air = (0, 0, 0, 200)
 	def_water = (0, 50, 200, 100)
 
-	def __init__(self, image, template='flat', block_size=10, use_numpy=True):
+	def __init__(self, image, template='flat', block_size=10,
+	        use_numpy=True):
 
 		self.image1 = PICS['terrain_templates'][image]['1']
 		self.image2 = PICS['terrain_templates'][image]['0']
@@ -101,7 +102,11 @@ class Terrain:
 			
 
 		for terrain, key in zip(terrain_texts.values(), terrain_texts.keys()):
-			main_dict = {'size': self.size, 'air': self.def_air, 'water': self.def_water}
+			main_dict = {
+			    'size': self.size, 
+			    'air': self.def_air, 
+			    'water': self.def_water
+			}
 			if terrain.startswith('@'):
 				# remove @ symbol
 				header = terrain.split('\n')[0][1:]
@@ -111,13 +116,18 @@ class Terrain:
 
 				# remove all whitespace
 
-				header = [part.strip().replace(' ', '').replace('\0', '')\
-				  .replace('\t', '').replace('\n', '').replace('\r', '') for part in header]
+				header = [part.strip().replace((' '), '') \
+				  .replace('\n', '') \
+				  .replace('\r', '') \
+				  .replace('\t', '') \
+				 for part in header]
 
 				for command in header:
 					parts = command.split('=')
+					print
 					if not parts[0] in ('air', 'water', 'size'):
-						raise SyntaxError('%a is not a valid command for header' % parts[0])
+						raise SyntaxError('%a is not a valid command for header'
+						 % parts[0])
 					else:
 						main_dict[parts[0]] = eval(parts[1])
 
@@ -135,9 +145,11 @@ class Terrain:
 				chars = []
 				for char in line:
 					chars.append(char)
-				terrain2dlist.append(chars if not self.use_numpy else numpy.array(chars)) 
+				terrain2dlist.append(chars if not self.use_numpy \
+					else numpy.array(chars)) 
 
-			main_dict['text'] = terrain2dlist if not self.use_numpy else numpy.array(terrain2dlist)
+			main_dict['text'] = terrain2dlist if not self.use_numpy \
+			    else numpy.array(terrain2dlist)
 
 			terrain2dlist_texts[key] = main_dict
 
@@ -154,6 +166,8 @@ class Terrain:
 
 		# the surface everything will be added to
 		big_actual_picture = Surface((800, 400))
+		if getattr(self, 'decorations', False):
+			self.decorations[0].draw_all()
 
 		# find the 2D list of the specified terrain
 		template = self.terrain2dlist_texts[self.template]
@@ -242,19 +256,19 @@ def _main(image='dirt', template='flat'):
 	pygame.display.set_icon(PICS['Other']['next'])
 	a.blit(pic, (0, 0))
 	print('\n' * 100)
-	for i in range(1000):
-		for a in terrain.terrain2dlist_texts['flat']['text']:
-			for i in a:
-				print(i)
+	# for i in range(1000):
+	# 	for a in terrain.terrain2dlist_texts['flat']['text']:
+	# 		for i in a:
+	# 			print(i)
 
-	'''while True:
+	while True:
 		for event in pygame.event.get():
 			if event.type == QUIT:
 				pygame.quit()
 				sys.stdout.close()
 				sys.stderr.close()
 				raise SystemExit
-		pygame.display.update()'''
+		pygame.display.update()
 
 
 def proc(args):

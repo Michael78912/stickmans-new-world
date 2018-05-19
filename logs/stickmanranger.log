@@ -44,3 +44,6 @@
 2018-05-11 16:51:31.41 made and got an automated script with git working, and am working on one that updates development log every time i write in this  
 2018-05-11 17:21:16.22 this is just a test message and will be removed in a second 
 2018-05-12 14:39:31.69 worked a lot on save.py, reworked it a bit 
+2018-05-12 18:06:08.95 created joker.py and drop.py, and did some work on enemy.py, and database.py 
+2018-05-14 20:31:51.36 did a few random fixes, created statusailment.py, and inventory.py, which i am still working on a bit2018-05-15 20:22:17.76 got the method in InventoryHandler working. dealing with mutable lists and for some reason i could not figure out what was going on! also started learning JS (something i should have done a long time ago) :)   
+2018-05-16 17:46:03.90 created backgroundimage.py, made inventory.py a bit better thanks to Will, edited terrain.py to look a bit nicer and incorporate background images as well 

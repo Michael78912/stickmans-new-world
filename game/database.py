@@ -1,17 +1,14 @@
-"""this file contains basically all of the data that the game needs
-it really has no code value, other than when it sorts the usable levels.
-"""
-
 import json as _json
 import os.path
 import save
 import class_ as _class_
+from class_.sprite import SMRSprite as SpriteUtils
 
 import pygame as _pg
 
-#import class_ as _class_
 
-#dictionary of color strings containing RGB values
+
+# dictionary of color strings containing RGB values
 COLOURS = {
     'green': (0, 128, 0),
     'blue': (0, 0, 128),
@@ -30,42 +27,55 @@ COLOURS = {
     'gold': (192, 192, 96),
     'gray': (211, 211, 211),
 }
-open = lambda file: __builtins__.open(os.path.join('config', file))
+#open = lambda file: __builtins__.open(os.path.join('config', file))
 
 SURFACE = _pg.display.set_mode((800, 600))
 
 _DECODE = _json.JSONDecoder()
-
-_USABLE  = _DECODE.decode(open('usable.json').read())
-SETTINGS = _DECODE.decode(open('settings.json').read())
-ALL = _DECODE.decode(open('data.json').read())
+SETTINGS = _DECODE.decode(open(os.path.join('config', 'settings.json')).read())
+ALL = _DECODE.decode(open(os.path.join('config', 'data.json')).read())
+ALL_CLASSES = ['Swordsman', 'Spearman', 'Wizard', 'Archer', 'Angel']
 print(ALL)
 
+ALL_TERRAINS = [
+    _class_.Terrain('dirt', 'flat'),
+]
+
 ALL_LEVELS = {
-	'village': _class_.Stage(position_on_map=(18, 589), all_screens=[None], boss_screen=None, )
+	'village': _class_.Stage(position_on_map=(18, 589),
+      all_screens=[_class_.PeacefulScreen()],
+      boss_screen=None, 
+      surface=SURFACE, 
+      terrain=ALL_TERRAINS[0], 
+      comes_from=None,
+      decorations=_class_.BackGroundImage('hut', SpriteUtils.get_topleft_coord(
+        ALL_TERRAINS[0],
+        *SpriteUtils.find_closest_of(ALL_TERRAINS[0], '*')))
+
+    )
 }
 
+
+
 ALL_SCREENS = [
-	_class_.stage.Screen()
 ]
 
-ALL_ENEMIES = [
-    _class_.Blob((10, 1, 1, 1), COLOURS['green'],
-    _class_.EnemyHead('smile', 'green'), 
-    # need drops, and attack (not implemented)
-    	)
-]
 
 ALL_WEAPONS = []
 
 ALL_COMPOS = []
 
-ALL_LEVELS = ALL_LEVELS[:]
+_SAVE = save.read_file()
+print(_SAVE)
+_INV_RAW = _SAVE['inventory']
+x, y = max([int(i.split('x')[0]) for i in _INV_RAW]), max([int(i.split('x')[1]) for i in _INV_RAW])
+_INV = _class_.InventoryHandler(x, y)
+_INV.sort_dict(_INV_RAW)
+
 
 MAIN_GAME_STATE = {
     'SETTINGS': SETTINGS,
-    'GAME_DATA': {
-        save.read_file(),
-    },
+    'GAME_DATA': _SAVE,
+    'INVENTORY': _INV,
     'MAIN_DISPLAY_SURF': SURFACE,
 }

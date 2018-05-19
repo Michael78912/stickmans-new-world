@@ -19,6 +19,8 @@ import inifile
 import os
 import encrypt
 
+from class_.inventory import InventoryHandler
+
 
 def read_file():
 	game_state = {}
@@ -67,7 +69,23 @@ def to_inifile(dict_):
 		file_str += '\n'
 	return file_str
 
+def make_inventory(dictionary):
+	pos = []
+	for i in dictionary:
+		pos.append(int(i.split('x')[0]))
+	maxx = max(pos)
+	pos = []
+	for i in dictionary:
+		pos.append(int(i.split('x')[1]))
+	maxy = max(pos)
+	inv = InventoryHandler(maxx, maxy)
+	inv.sort_dict(dictionary)
+	return inv
+
+
 if __name__ == '__main__':
+	write_file(open('misc\\shello.ini').read())
 	a = read_file()
-	print(to_inifile(a))
-	write_file(a)
+	print(a)
+	print(a['inventory'])
+	print(make_inventory(a['inventory']))

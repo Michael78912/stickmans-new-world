@@ -118,7 +118,7 @@ def check():
 	with urllib.request.urlopen(VER_URL) as response:
 		version = response.read().decode()
 	# decode the current version from "settings.json"
-	current_version = json.JSONDecoder().decode(open('..{0}game{0}linux_config.json'.format('\\' if os.name == 'nt' else '/')).read())['version']
+	current_version = json.JSONDecoder().decode(open('..{0}game{0}config{0}linux_config.json'.format('\\' if os.name == 'nt' else '/')).read())['version']
 	# if the version is the same
 	with PRINT_LOCK: print(current_version, version)
 	data['current version'] = current_version

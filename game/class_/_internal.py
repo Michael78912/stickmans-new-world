@@ -28,6 +28,8 @@ __version__ = '0.0'
 
 VALID_ENEMY_HEADS = ['smile', 'frown', 'triangle']
 COLOURS = {
+    'brown': (101, 67, 33),
+    'dark brown': (210, 105, 30),
     'azure': (0, 127, 255),
     'light azure': (135, 206, 235),
     'light beige': (225, 198, 153),
@@ -75,10 +77,12 @@ def _gather_pics(dir='.'):
         elif item.split(".")[-1] in ('png', 'jpg'):
             dictionary[item.split('.')[0]] = pg.image.load(os.path.join(dir, item))
 
-        if dir.endswith(('heads', 'attacks')):
+        if dir.endswith(('heads', 'attacks', 'spear', 'knife', 'wand', 'sword', 'bow')):
             # heads, attacks, and weapons should be of each colour
+            print(dir, )
             di = dictionary[item.split('.')[0]] = {}
             for col in COLOURS:
+                print(dir, col)
                 rgb_col = COLOURS[col]
                 di[col] = pg.image.load(os.path.join(dir, item))
                 change_colour_surface(di[col], *rgb_col)
@@ -115,7 +119,18 @@ stickmanranger.
 
 DEFAULT_STATS =(50, 0, 0, 0, 0)
 
-
+def change_alpha_to_colour(surf, alpha_to_colour):
+    #print(alpha_to_colour)
+    for alpha_value, colour in zip(alpha_to_colour.keys(),
+                                   alpha_to_colour.values()):
+        alpha = pg.surfarray.pixels_alpha(surf)
+        colours = pg.surfarray.pixels3d(surf)
+        #print(alpha)
+        for i, index1 in zip(alpha, range(len(alpha))):
+            for val, index in zip(i, range(len(i))):
+                if val == alpha_value:
+                    colours[index1][index] = colour
+                    alpha[index1][index] = 255
 
 
 def _Box(size, colour, pos, surface, alpha=None, image=None) -> tuple:
@@ -137,4 +152,4 @@ def _Box(size, colour, pos, surface, alpha=None, image=None) -> tuple:
 
     return MyRect(new_surf.get_rect(topleft=pos)), new_surf
 
-#pprint(PICS)
+pprint(PICS)

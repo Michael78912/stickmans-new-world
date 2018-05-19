@@ -1,9 +1,9 @@
 import pygame
 
 try:
-    from _internal import PICS, COLOURS
+    from _internal import *
 except ImportError:
-    from ._internal import PICS, COLOURS
+    from ._internal import *
 
 DEF_SIZE = 1
 
@@ -17,18 +17,7 @@ class EnemyHead:
         self.name = colour + '_' + type_str
         self.pretty_name = ' '.join((colour, type_str)).title()
 
-def change_alpha_to_colour(surf, alpha_to_colour):
-    #print(alpha_to_colour)
-    for alpha_value, colour in zip(alpha_to_colour.keys(),
-                                   alpha_to_colour.values()):
-        alpha = pygame.surfarray.pixels_alpha(surf)
-        colours = pygame.surfarray.pixels3d(surf)
-        #print(alpha)
-        for i, index1 in zip(alpha, range(len(alpha))):
-            for val, index in zip(i, range(len(i))):
-                if val == alpha_value:
-                    colours[index1][index] = colour
-                    alpha[index1][index] = 255
+
 
 def main():
     import pygame

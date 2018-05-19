@@ -17,10 +17,8 @@ class Stage:
         # list\tuple of all screens in stage
         boss_screen,
         # the screen of the boss
-        terrain_image,
-        # the image of the terrain
-        terrain_template,
-        # the template of the terrain
+        terrain,
+        # the terrain class 
         comes_from,
         # stage that you beat to unlock it (first level is None, shouldn't ned to put None again)
         surface,
@@ -30,8 +28,12 @@ class Stage:
         has_icon=True,
         # False if level shows upon map already, or is secret
         links_to=None,
-        # list\tuple of all stages it links to
+        # list\tuple of all stages it links to, 
+        decorations=(),
+        # tuple of decorations to be drawn
         ):
+        if comes_from is None:
+            comes_from = _NullStage
 
         self.position_on_map = position_on_map
         self.all_screens = all_screens
@@ -40,6 +42,8 @@ class Stage:
         self.peaceful = peaceful
         self.has_icon = has_icon
         self.links_to = links_to
+        self.terrain = terrain
+        self.decorations = decorations
 
         if comes_from.beaten and has_icon:
             pg.draw.rect(surface, WHITE, position_on_map + STAGE_SIZE)
@@ -49,3 +53,13 @@ class Stage:
 
         elif peaceful and has_icon:
             pg.draw.rect(surface, TEAL, position_on_map + STAGE_SIZE)
+
+class _NullStage:
+    position_on_map = None
+    all_screens = None
+    comes_from = None
+    drawing_surface = None
+    peaceful = None
+    has_icon = None
+    links_to = None
+    beaten = True

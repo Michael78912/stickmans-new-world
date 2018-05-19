@@ -7,4 +7,7 @@ git add *
 git commit -m "added to dev log"
 git push origin master
 cd ..
-#rm michael78912.github.io -r
+echo entering bash shell...
+echo if you close the window, the directory will not be removed. if you type exit, it will.
+bash
+rm michael78912.github.io -r

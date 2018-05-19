@@ -10,6 +10,12 @@ original SR by Ha55ii
 
 this game is built on pygame, an excellent game engine for python
 thanks to paint.net, which I made the sprites on.
+
+UPDATE: May 18
+Oh my goodness i look back at this code after so long of ignoring main.py
+i kind of hate this module now.
+oh well, it works, i suppose. for now
+By the way, i wasnt even close to my intended release date :)
 """
 
 __author__ = 'Michael Gill'
@@ -24,10 +30,10 @@ import pygame as pg
 
 # local imports
 #import save
-#import database
-#import class_
-#import dicts
-#from dicts import COLOURS
+import database
+import class_
+import dicts
+from dicts import COLOURS
 import check_update
 
 ### constant values ###
@@ -217,7 +223,8 @@ def get_characters() -> list:
     num = -250  # this is the starting point for the images to appear
 
     # puts all the characters in a line with their caption beneath
-    for string in save.ALL_CLASSES:
+    for string in database.ALL_CLASSES:
+        string = string.lower()
         texts[string] = draw_text(
             string, size=20, cen_of_txt=(WIN_X // 2 + num, WIN_Y // 2 + 200))
 
@@ -303,8 +310,9 @@ def get_characters() -> list:
                                     SURFACE)
                                 boxes_with_pictures.append(clicked)
 
-                            except class_.SMRError as error:
+                            except (class_.SMRError, KeyError) as error:
                                 print(error)
+
                             break
 
                         elif clicked in boxes_with_pictures:
@@ -343,6 +351,7 @@ def change_colour_surface(surface, r, g, b):
     arr[:, :, 0] = r
     arr[:, :, 1] = g
     arr[:, :, 2] = b
+
 
 
 def get_keys_from_pics(orig_list):

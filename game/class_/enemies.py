@@ -4,6 +4,10 @@ except ImportError:
 	from .enemy import Enemy
 import random
 
+
+__all__ = ['Blob']
+
+
 BACKWARDS = 'backwards'
 FORWARDS = 'forwards'
 

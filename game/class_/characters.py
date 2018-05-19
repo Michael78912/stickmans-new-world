@@ -10,6 +10,10 @@ except ImportError:
 	from ._internal import *
 	from .character import Character	
 
+
+__all__ = ['Swordsman', 'Angel', 'Archer', 'Spearman', 'Wizard']
+
+
 DEFAULT_STATS =(50, 0, 0, 0, 0)
 
 class Swordsman(Character):
