@@ -12,18 +12,19 @@ class Screen:
     """
 
     def __init__(
-        self,
-        all_enemies,
-        num_of_enemies_per_enemy,
-        spawn_mode='random',
-        # must put Y coordinate for each enemy to spawn
-        ):
+            self,
+            all_enemies,
+            num_of_enemies_per_enemy,
+            spawn_mode='random',
+            # must put Y coordinate for each enemy to spawn
+    ):
 
-        assert len(all_enemies) == len(num_of_enemies_per_enemy), "the enemies and quantities do not match"
+        assert len(
+            all_enemies) == len(num_of_enemies_per_enemy
+                                ), "the enemies and quantities do not match"
 
         self.all_enemies = all_enemies
         self.num_of_enemies_per_enemy = num_of_enemies_per_enemy
-
 
         if spawn_mode == 'random':
             new_spawn_mode = []
@@ -33,7 +34,7 @@ class Screen:
                     new_spawn_mode.append((0 if enemy.area == 'ground' else \
                         random.randint(1, 600), random.randint(1, 600)))
             self.spawn_mode = new_spawn_mode
-        
+
         else:
             self.spawn_mode = spawn_mode
 

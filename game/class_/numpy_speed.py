@@ -1,7 +1,6 @@
 import numpy
 import timeit
 
-
 print('hi')
 
 timeit.timeit('''

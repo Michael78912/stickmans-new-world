@@ -4,6 +4,7 @@ this is a base class, that is to derive compos/weapons from (and anything i migh
 definitely not to be used directly.
 """
 
+
 class DropItem:
     def __init__(self, smallicon, largeicon, surface, stats_to_display=''):
         self.smallicon = smallicon
@@ -26,5 +27,3 @@ class DropItem:
 
     def draw_small(self, mpos):
         self.surface.blit(self.smallicon, pos)
-
-    

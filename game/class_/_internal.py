@@ -12,9 +12,7 @@ import sys
 import pygame as pg
 from pygame.locals import *
 
-
 import random
-
 
 print(sys.executable, 'HOWDY HO')
 pg.init()
@@ -24,7 +22,6 @@ DIR = '..\\' if os.getcwd().endswith('class_') else ''
 
 __author__ = 'NOT Michael Gill'
 __version__ = '0.0'
-
 
 VALID_ENEMY_HEADS = ['smile', 'frown', 'triangle']
 COLOURS = {
@@ -44,7 +41,8 @@ COLOURS = {
     'dark blue': (0, 0, 255),
     'dark green': (0, 255, 0),
     'black': (0, 0, 0),
-    'light black': (211, 211, 211),   # names like this are stupid, but must be used
+    'light black': (211, 211,
+                    211),  # names like this are stupid, but must be used
     'aqua': (0, 255, 255),
     'white': (255, 255, 255),
     'teal': (0, 128, 128),
@@ -58,13 +56,14 @@ COLOURS = {
     'silver': (192, 192, 192),
     'gold': (192, 192, 96),
     'grey': (211, 211, 211),
-    'cyan': (175,238,238),
+    'cyan': (175, 238, 238),
 }
 
-COLOURS['gray'] =  COLOURS['grey']
-COLOURS['light gray'] =  COLOURS['light grey']
-COLOURS['light gronce'] = COLOURS['light grey']    # for Zeodexic
+COLOURS['gray'] = COLOURS['grey']
+COLOURS['light gray'] = COLOURS['light grey']
+COLOURS['light gronce'] = COLOURS['light grey']  # for Zeodexic
 COLOURS['gronce'] = COLOURS['grey']
+
 
 def _gather_pics(dir='.'):
 
@@ -75,9 +74,11 @@ def _gather_pics(dir='.'):
             dictionary[item] = _gather_pics(os.path.join(dir, item))
 
         elif item.split(".")[-1] in ('png', 'jpg'):
-            dictionary[item.split('.')[0]] = pg.image.load(os.path.join(dir, item))
+            dictionary[item.split('.')[0]] = pg.image.load(
+                os.path.join(dir, item))
 
-        if dir.endswith(('heads', 'attacks', 'spear', 'knife', 'wand', 'sword', 'bow')):
+        if dir.endswith(('heads', 'attacks', 'spear', 'knife', 'wand', 'sword',
+                         'bow')):
             # heads, attacks, and weapons should be of each colour
             print(dir, )
             di = dictionary[item.split('.')[0]] = {}
@@ -88,6 +89,8 @@ def _gather_pics(dir='.'):
                 change_colour_surface(di[col], *rgb_col)
 
     return dictionary
+
+
 def change_colour_surface(surface, r, g, b):
     """changes the colour of all parts of a 
     surface except for the transparent parts.
@@ -97,6 +100,7 @@ def change_colour_surface(surface, r, g, b):
     arr[:, :, 1] = g
     arr[:, :, 2] = b
 
+
 # def change_alpha_to_colour(surface, colour):
 #     """changes all the alpha values in surface
 #     to colour.
@@ -105,19 +109,18 @@ def change_colour_surface(surface, r, g, b):
 #     for line in alpha:
 #         for index in range(len(alpha)):
 #             if line[index] != 0:
-#                 line[index] = 
+#                 line[index] =
 
 PICS = _gather_pics(os.path.join(DIR, 'data'))
 print(DIR)
 TDIR = os.path.join(DIR, 'terrains')
-
-
 """characters.py- a module of subclasses
 each of these classes is a class of stickman from 
 stickmanranger.
 """
 
-DEFAULT_STATS =(50, 0, 0, 0, 0)
+DEFAULT_STATS = (50, 0, 0, 0, 0)
+
 
 def change_alpha_to_colour(surf, alpha_to_colour):
     #print(alpha_to_colour)
@@ -151,5 +154,6 @@ def _Box(size, colour, pos, surface, alpha=None, image=None) -> tuple:
         surface.blit(image, pos)
 
     return MyRect(new_surf.get_rect(topleft=pos)), new_surf
+
 
 pprint(PICS)

@@ -1,11 +1,12 @@
-try: 
+try:
     from _internal import *
     from smr_error import SMRError
-except ImportError: 
+except ImportError:
     from ._internal import *
     from .smr_error import SMRError
 import pygame as pg
 col = COLOURS
+
 
 class MyRect(pg.Rect):
     """this class is simply for keeping track of 
@@ -113,7 +114,8 @@ class MyRect(pg.Rect):
         if self.PicReprInside:
             raise SMRError('there is already a picture in this box.')
 
-        _Box((self.width, self.height), self.colour, (self.x, self.y), surf, 255, pic)
+        _Box((self.width, self.height), self.colour, (self.x, self.y), surf,
+             255, pic)
         self.PicReprInside = repr(pic)
         self.PicInside = pic
 
@@ -124,6 +126,7 @@ class MyRect(pg.Rect):
         _Box((self.width, self.height), self.colour, (self.x, self.y), surf)
         self.PicInside = None
         self.PicReprInside = ''
+
 
 def _Box(size, colour, pos, surface, alpha=None, image=None) -> tuple:
     """

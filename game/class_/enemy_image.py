@@ -10,13 +10,13 @@ except ImportError:
     from .sprite import SMRSprite
     from .enemy_head import EnemyHead
 
-
 FPS = 50
 CLOCK = pg.time.Clock()
 
 
 class EnemyImage(SMRSprite):
-    def __init__(self, pos, size, colour, head_type, main_game_state, event_queue):
+    def __init__(self, pos, size, colour, head_type, main_game_state,
+                 event_queue):
         SMRSprite.__init__(self, main_game_state, event_queue, pos)
         head = EnemyHead(head_type, colour, size)
         head_rect = head.head.get_rect()
@@ -51,8 +51,10 @@ class EnemyImage(SMRSprite):
         surf.blit(self.head.head, self.topleft)
 
     def start_thread(self, surf, pos):
-        self.mainthread = threading.Thread(target=self._mainloop,
-            args=(surf, pos),)
+        self.mainthread = threading.Thread(
+            target=self._mainloop,
+            args=(surf, pos),
+        )
         self.mainthread.start()
 
     def _mainloop(self, pos, surf):
@@ -72,6 +74,7 @@ class EnemyImage(SMRSprite):
     def get_body_size():
         return pg.Rect((0, 0), (0, 0))
 
+
 if __name__ == '__main__':
     d = EnemyImage((0, 0), 2, 'green', 'happy', {}, {})
     s = pg.Surface((10, 10))
@@ -89,4 +92,3 @@ if __name__ == '__main__':
         pg.display.update()
         s.fill((0, 0, 0))
         CLOCK.tick(FPS)
-    

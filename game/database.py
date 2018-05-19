@@ -6,8 +6,6 @@ from class_.sprite import SMRSprite as SpriteUtils
 
 import pygame as _pg
 
-
-
 # dictionary of color strings containing RGB values
 COLOURS = {
     'green': (0, 128, 0),
@@ -42,24 +40,22 @@ ALL_TERRAINS = [
 ]
 
 ALL_LEVELS = {
-	'village': _class_.Stage(position_on_map=(18, 589),
-      all_screens=[_class_.PeacefulScreen()],
-      boss_screen=None, 
-      surface=SURFACE, 
-      terrain=ALL_TERRAINS[0], 
-      comes_from=None,
-      decorations=_class_.BackGroundImage('hut', SpriteUtils.get_topleft_coord(
-        ALL_TERRAINS[0],
-        *SpriteUtils.find_closest_of(ALL_TERRAINS[0], '*')))
-
-    )
+    'village':
+    _class_.Stage(
+        position_on_map=(18, 589),
+        all_screens=[_class_.PeacefulScreen()],
+        boss_screen=None,
+        surface=SURFACE,
+        terrain=ALL_TERRAINS[0],
+        comes_from=None,
+        decorations=_class_.BackGroundImage('hut',
+                                            SpriteUtils.get_topleft_coord(
+                                                ALL_TERRAINS[0],
+                                                *SpriteUtils.find_closest_of(
+                                                    ALL_TERRAINS[0], '*'))))
 }
 
-
-
-ALL_SCREENS = [
-]
-
+ALL_SCREENS = []
 
 ALL_WEAPONS = []
 
@@ -68,10 +64,10 @@ ALL_COMPOS = []
 _SAVE = save.read_file()
 print(_SAVE)
 _INV_RAW = _SAVE['inventory']
-x, y = max([int(i.split('x')[0]) for i in _INV_RAW]), max([int(i.split('x')[1]) for i in _INV_RAW])
+x, y = max([int(i.split('x')[0]) for i in _INV_RAW]), max(
+    [int(i.split('x')[1]) for i in _INV_RAW])
 _INV = _class_.InventoryHandler(x, y)
 _INV.sort_dict(_INV_RAW)
-
 
 MAIN_GAME_STATE = {
     'SETTINGS': SETTINGS,

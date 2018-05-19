@@ -162,7 +162,8 @@ def draw_text(
         text,
         size=32,
         cen_of_txt=(WIN_X // 2, WIN_Y // 2),
-        colour=(COLOURS['black'], COLOURS['white']), ) -> tuple:
+        colour=(COLOURS['black'], COLOURS['white']),
+) -> tuple:
     """
     function for drawing text on SURFACE,
     returns a tuple containing the rect
@@ -351,7 +352,6 @@ def change_colour_surface(surface, r, g, b):
     arr[:, :, 0] = r
     arr[:, :, 1] = g
     arr[:, :, 2] = b
-
 
 
 def get_keys_from_pics(orig_list):

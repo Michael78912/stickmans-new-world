@@ -8,7 +8,8 @@ class Class:
             type,
             PlayerNum,
             stats=(50, 0, 0, 0, 0),
-            spec=None, ):
+            spec=None,
+    ):
 
         #the following two lines of code may seem redundant, but for a reason.
         try:

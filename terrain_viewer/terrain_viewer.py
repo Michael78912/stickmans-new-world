@@ -48,11 +48,7 @@ def read_file(file):
     global PICS, top_water
     PICS = gather_pics('data')
     top_water = PICS['Other']['top_water']
-    main_dict = {
-                'size': 10,
-                'air': def_air, 
-                'water': def_water
-                 }
+    main_dict = {'size': 10, 'air': def_air, 'water': def_water}
     if terrain.startswith('@'):
         print('howdy ho')
         # remove @ symbol
@@ -63,8 +59,11 @@ def read_file(file):
 
         # remove all whitespace
 
-        header = [part.strip().replace(' ', '').replace('\0', '')
-                  .replace('\t', '').replace('\n', '').replace('\r', '') for part in header]
+        header = [
+            part.strip().replace(' ', '').replace('\0', '')
+            .replace('\t', '').replace('\n', '').replace('\r', '')
+            for part in header
+        ]
 
         for command in header:
             parts = command.split('=')
@@ -107,7 +106,7 @@ def build_surface(text_dict, image='stone'):
         image1 = PICS['terrain_templates'][image]['1']
     except KeyError:
         # a command line argument has been set incorrectly
-        # by the user. 
+        # by the user.
         image = 'stone'
         image1 = PICS['terrain_templates'][image]['1']
 
@@ -117,15 +116,15 @@ def build_surface(text_dict, image='stone'):
     # find the 2D list of the specified terrain
     template = text_dict
     self = Holder(**text_dict)
-    pg.transform.scale(image1, (template['size'],) * 2)
-    pg.transform.scale(image2, (template['size'],) * 2)
+    pg.transform.scale(image1, (template['size'], ) * 2)
+    pg.transform.scale(image2, (template['size'], ) * 2)
     if template['size'] is not None:
         self.size = template['size']
 
     text = template['text']
-    air_picture = pg.surface.Surface((self.size,) * 2)
+    air_picture = pg.surface.Surface((self.size, ) * 2)
     air_picture.fill(template['air'])
-    water_picture = pg.surface.Surface((self.size,) * 2)
+    water_picture = pg.surface.Surface((self.size, ) * 2)
     water_picture.fill(template['water'])
     top_water_picture = top_water
     _change_colour_surface(top_water_picture, *template['water'][:3])
@@ -139,32 +138,34 @@ def build_surface(text_dict, image='stone'):
     for line, index1 in zip(text, range(len(text))):
         for block, index2 in zip(line, range(len(line))):
             if block == ground_symbol:
-                big_actual_picture.blit(image1, 
-                    (index2 * self.size, index1 * self.size))
+                big_actual_picture.blit(
+                    image1, (index2 * self.size, index1 * self.size))
             elif block == surface_symbol:
-                big_actual_picture.blit(image2, 
-                    (index2 * self.size, index1 * self.size))
+                big_actual_picture.blit(
+                    image2, (index2 * self.size, index1 * self.size))
             elif block == air_symbol:
-                big_actual_picture.blit(air_picture,
-                    (index2 * self.size, index1 * self.size))
+                big_actual_picture.blit(
+                    air_picture, (index2 * self.size, index1 * self.size))
             elif block == water_symbol:
-                big_actual_picture.blit(water_picture,
-                    (index2 * self.size, index1 * self.size))
+                big_actual_picture.blit(
+                    water_picture, (index2 * self.size, index1 * self.size))
             elif block == pit_symbol:
-                big_actual_picture.blit(air_picture,
-                    (index2 * self.size, index1 * self.size))
-                big_actual_picture.blit(pit_picture,
-                    (index2 * self.size, index1 * self.size))
+                big_actual_picture.blit(
+                    air_picture, (index2 * self.size, index1 * self.size))
+                big_actual_picture.blit(
+                    pit_picture, (index2 * self.size, index1 * self.size))
             elif block == top_water_symbol:
-                big_actual_picture.blit(air_picture,
-                    (index2 * self.size, index1 * self.size))
-                big_actual_picture.blit(top_water_picture,
+                big_actual_picture.blit(
+                    air_picture, (index2 * self.size, index1 * self.size))
+                big_actual_picture.blit(
+                    top_water_picture,
                     # sign is 30x30 pixels
                     (index2 * self.size, index1 * self.size))
             elif block == sign_symbol:
-                big_actual_picture.blit(air_picture,
-                    (index2 * self.size, index1 * self.size))
-                big_actual_picture.blit(sign_picture,
+                big_actual_picture.blit(
+                    air_picture, (index2 * self.size, index1 * self.size))
+                big_actual_picture.blit(
+                    sign_picture,
                     # sign is 30x30 pixels
                     (index2 * self.size - 20, index1 * self.size - 10))
     self.built_image = big_actual_picture
@@ -187,6 +188,7 @@ class Holder:
         for i, x in zip(kwargs, kwargs.values()):
             exec('self.{} = {}'.format(i, x))
 
+
 def test():
     a = build_surface(read_file('terrains\\flat.smr-terrain'))
     surf = pg.display.set_mode((800, 400))
@@ -198,6 +200,7 @@ def test():
                 raise SystemExit
         pg.display.update()
 
+
 def draw(surf, title=''):
     surface = pg.display.set_mode((800, 400))
     pg.display.set_caption(title)
@@ -205,12 +208,15 @@ def draw(surf, title=''):
     pg.display.set_icon(a)
     surface.blit(surf, (0, 0))
 
+
 def mainloop():
     while True:
         for event in pg.event.get():
             if event.type == 12:
                 raise SystemExit
         pg.display.update()
+
+
 try:
     if len(sys.argv) > 2:
         print(sys.argv, len(sys.argv), len(sys.argv) > 2)
@@ -223,4 +229,7 @@ try:
     main()
 
 except Exception as e:
-    bugreport.mainwithmessage('Terrain Viewer', e, 'this is probably an error on koens computer, as no one else  has probably downloaded it')
+    bugreport.mainwithmessage(
+        'Terrain Viewer', e,
+        'this is probably an error on koens computer, as no one else  has probably downloaded it'
+    )

@@ -9,10 +9,12 @@ thread with that sprite, and in main_event_queue,
 it will act in the main loop itself.
 """
 
+
 class _Event:
     """
     base class for the other events.
     """
+
     def __init__(self, code=None, mode=exec):
         self.code = code
 
@@ -29,6 +31,7 @@ class _Event:
         if self.code is not None:
             self.mode(self.code)
 
+
 class Quit(_Event):
     def __init__(self):
         Quit.code = compile('import os; os._exit(0)', 'Quit Event', 'exec')
@@ -43,11 +46,13 @@ class SayHello(_Event):
     """
     test event.
     """
+
     def __init__(self):
         SayHello.code = compile('print("Hello!")', 'SayHello event', 'exec')
         self.mode = exec
 
     def _exec(self):
         self.mode(self.code)
+
 
 #print(SayHello())

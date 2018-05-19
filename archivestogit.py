@@ -8,8 +8,6 @@ import subprocess
 import shutil
 import glob
 
-
-
 GIT_SCRIPT = """
 git clone https://michael78912/smnw-archives
 cd smnw-archives
@@ -19,27 +17,33 @@ cp ../Archives/* .
 git add *
 git push origin master
 """
+
+
 def make_xz(file, dir='.'):
     """
     compresses file and saves it to
     [file].xz in the dir.
     """
     os.system('xz -k ' + os.path.join(dir, file))
-    
+
+
 def make_tarfile(source_dir):
     with tarfile.open(source_dir + '.tar', "w") as tar:
         tar.add(source_dir, arcname=os.path.basename(source_dir))
 
+
 def make_gz(file, dir='.'):
     os.system('gzip -k ' + file)
 
+
 def make_bz2(file, dir='.'):
-    
+
     os.system('bzip2 -k ' + os.path.join(dir, file))
+
 
 def make_zipfile(dir):
     print('writing xipfile')
-    zipfile.main(['-c', dir+'.zip', dir])
+    zipfile.main(['-c', dir + '.zip', dir])
 
 
 def make_7z(dir):
@@ -56,11 +60,10 @@ def make_7z(dir):
     os.chdir(old)
 
 
-
 def write_archive():
     for arc in glob.glob('stickman*.*'):
         os.remove(arc)
-        
+
     for func in (make_zipfile, make_tarfile, make_7z):
         func('logs')
 
@@ -72,11 +75,10 @@ def write_archive():
 
     shutil.rmtree('Archives')
     os.mkdir('Archives')
-    
+
     for arc in glob.glob('stickman*.*'):
         shutil.move(arc, 'Archives')
     os.system('bash tmp.sh')
-        
-        
- 
+
+
 write_archive()

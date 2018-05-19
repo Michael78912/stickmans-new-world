@@ -1,37 +1,38 @@
 import pygame as pg
 
-WHITE = (255, 255, 255)    # unbeaten
-GRAY = (211, 211, 211)     # beaten
-TEAL = (0, 128, 128)       # peaceful
+WHITE = (255, 255, 255)  # unbeaten
+GRAY = (211, 211, 211)  # beaten
+TEAL = (0, 128, 128)  # peaceful
 STAGE_SIZE = (10, 10)
+
 
 class Stage:
     unlocked = False
     beaten = False
-    
+
     def __init__(
-        self,
-        position_on_map,
-        # (x, y) cartesian system
-        all_screens,
-        # list\tuple of all screens in stage
-        boss_screen,
-        # the screen of the boss
-        terrain,
-        # the terrain class 
-        comes_from,
-        # stage that you beat to unlock it (first level is None, shouldn't ned to put None again)
-        surface,
-        # map that the stage must be drawn on
-        peaceful=False,
-        # peaceful stage is a shop or of the like
-        has_icon=True,
-        # False if level shows upon map already, or is secret
-        links_to=None,
-        # list\tuple of all stages it links to, 
-        decorations=(),
-        # tuple of decorations to be drawn
-        ):
+            self,
+            position_on_map,
+            # (x, y) cartesian system
+            all_screens,
+            # list\tuple of all screens in stage
+            boss_screen,
+            # the screen of the boss
+            terrain,
+            # the terrain class
+            comes_from,
+            # stage that you beat to unlock it (first level is None, shouldn't ned to put None again)
+            surface,
+            # map that the stage must be drawn on
+            peaceful=False,
+            # peaceful stage is a shop or of the like
+            has_icon=True,
+            # False if level shows upon map already, or is secret
+            links_to=None,
+            # list\tuple of all stages it links to,
+            decorations=(),
+            # tuple of decorations to be drawn
+    ):
         if comes_from is None:
             comes_from = _NullStage
 
@@ -53,6 +54,7 @@ class Stage:
 
         elif peaceful and has_icon:
             pg.draw.rect(surface, TEAL, position_on_map + STAGE_SIZE)
+
 
 class _NullStage:
     position_on_map = None

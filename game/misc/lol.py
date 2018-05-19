@@ -8,7 +8,7 @@ SCREEN_HEIGHT = 410
 
 #BLACK = (  0,   0,   0)
 WHITE = (255, 255, 255)
-RED   = (255,   0,   0)
+RED = (255, 0, 0)
 
 FPS = 30
 
@@ -29,7 +29,8 @@ pygame.init()
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 #screen_rect = screen.get_rect()
 
-pygame.display.set_caption("Fracking System (because \"Tracking System\" sounded too wierd")
+pygame.display.set_caption(
+    "Fracking System (because \"Tracking System\" sounded too wierd")
 
 # - objects -
 
@@ -51,7 +52,7 @@ while running:
             running = False
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1:            
+            if event.button == 1:
                 if rectangle.collidepoint(event.pos):
                     rectangle_draging = True
                     mouse_x, mouse_y = event.pos
@@ -59,7 +60,7 @@ while running:
                     offset_y = rectangle.y - mouse_y
 
         elif event.type == pygame.MOUSEBUTTONUP:
-            if event.button == 1:            
+            if event.button == 1:
                 rectangle_draging = False
 
         elif event.type == pygame.MOUSEMOTION:

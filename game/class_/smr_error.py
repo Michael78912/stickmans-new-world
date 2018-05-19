@@ -2,6 +2,7 @@
 stickmanranger errors.
 """
 
+
 class SMRError(Exception):
     """
     base class for stickmanranger errors

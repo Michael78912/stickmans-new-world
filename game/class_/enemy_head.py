@@ -7,6 +7,7 @@ except ImportError:
 
 DEF_SIZE = 1
 
+
 class EnemyHead:
     def __init__(self, type_str, colour, size=DEF_SIZE):
         print(size)
@@ -18,7 +19,6 @@ class EnemyHead:
         self.pretty_name = ' '.join((colour, type_str)).title()
 
 
-
 def main():
     import pygame
     image = pygame.image.load('happy.png')
@@ -27,7 +27,6 @@ def main():
 
 import pprint
 pprint.pprint(PICS)
-
 
 if __name__ == '__main__':
     s = EnemyHead('happy', 'green')
@@ -38,10 +37,9 @@ if __name__ == '__main__':
     a.fill(COLOURS['white'])
     s.head.set_alpha(100)
     #change_alpha_to_colour(s.head, {100: (255, 0, 0)})
-    a.blit(s.head, (0,0))
+    a.blit(s.head, (0, 0))
     pygame.display.update()
     while True:
         for i in pygame.event.get():
             if i.type == 12:
                 raise SystemExit
-

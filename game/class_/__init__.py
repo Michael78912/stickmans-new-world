@@ -4,7 +4,7 @@ be loaded on calling 'import class_', so i thought
 it would be good to bundle everything in here.
 it is expected that this will only be called
 from .., so this should be fine
-""" 
+"""
 
 try:
     from .screen import Screen, PeacefulScreen

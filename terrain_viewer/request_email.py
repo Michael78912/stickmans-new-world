@@ -18,12 +18,15 @@ you should recieve a confirmation email :)
 oh yeah, I wont sell it to anyone either'''
 
 try:
-    FILE = os.path.join((os.environ['USERPROFILE'] if os.name == 'nt' else os.environ['HOME']), '.stickman_new_world', 'useremail')
+    FILE = os.path.join((os.environ['USERPROFILE']
+                         if os.name == 'nt' else os.environ['HOME']),
+                        '.stickman_new_world', 'useremail')
 except KeyError:
     wrong_os()
 
 if not os.path.exists(os.path.join(*os.path.split(FILE)[:-1])):
     os.mkdir(os.path.join(*os.path.split(FILE)[:-1]))
+
 
 def main():
     print('hi')
@@ -49,7 +52,8 @@ def main():
     skip.place(x=220, y=100)
     skip.pack()
 
-    done = tk.Button(root, text='done', command=lambda: get_text(entry, variables, root))
+    done = tk.Button(
+        root, text='done', command=lambda: get_text(entry, variables, root))
     done.place(x=200, y=100)
     done.pack()
 
@@ -63,12 +67,16 @@ def main():
             send_confirm(variables)
             root.destroy()
 
-        try: root.update()
-        except: pass
+        try:
+            root.update()
+        except:
+            pass
+
 
 def get_text(entry, variables, root):
     print(entry.get())
     variables['entry_data'] = entry.get()
+
 
 def exit(v, save=False):
     if save:
@@ -76,17 +84,17 @@ def exit(v, save=False):
             openfile.write('')
     v['quit'] = True
 
+
 def remember(item):
     with open(FILE, 'w') as openfile:
         openfile.write(item['entry_data'])
     exit(item)
 
+
 def send_confirm(items):
     import smtplib
     import bugreport
     from cryptography.fernet import Fernet
-
-
 
     sender = 'bugreporter.smr@mail.com'
     reciever = [items['entry_data']]
@@ -109,23 +117,28 @@ Subject: email gotten
 
 {reciever}'''.format(**locals())
     server = smtplib.SMTP_SSL('smtp.mail.com', 465)
-    a = Fernet(bugreport.HIUEFWILEIURFHE).decrypt(bugreport.FYUKYFVKFYVHUFL).decode()
+    a = Fernet(bugreport.HIUEFWILEIURFHE).decrypt(
+        bugreport.FYUKYFVKFYVHUFL).decode()
     server.ehlo()
     server.login(sender, a)
     try:
         server.sendmail(sender, reciever, message)
         server.sendmail(sender, sender, other)
     except:
-        tkinter.messagebox.showerror('Error', 'There was an error sending the email.\nif this problem persists please contact me at <michaelveenstra12@gmail.com>')
+        tkinter.messagebox.showerror(
+            'Error',
+            'There was an error sending the email.\nif this problem persists please contact me at <michaelveenstra12@gmail.com>'
+        )
     server.close()
+
 
 def wrong_os():
     raise SystemExit
-	
+
+
 try:
     main()
 
 except Exception as e:
     import bugreport
     bugreport.default_smr(e, 'in request_email')
-

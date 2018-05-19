@@ -9,10 +9,13 @@ try:
 except Exception as l:
     d = l
 
+
 def raise_d():
     raise d
 
+
 sys.stderr = open('C:\\users\\michael\\desktop\\stderr.txt', 'w')
+
 
 def raise_d():
     raise d

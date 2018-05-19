@@ -27,7 +27,10 @@ def gather_pics(dir='.'):
             dictionary[item] = gather_pics(os.path.join(dir, item))
 
         elif item.split(".")[-1] in ('png', 'jpg'):
-            if dir in ('heads', 'attacks',) + tuple(ALL['all_weapons'].values()):
+            if dir in (
+                    'heads',
+                    'attacks',
+            ) + tuple(ALL['all_weapons'].values()):
                 # heads, attacks, and weapons should be of each colour
                 for key, value in zip(COLOURS.keys(), COLOURS.values()):
                     dictionary['_'.join((key, item))] = change_colour_surface(
@@ -48,7 +51,6 @@ def change_colour_surface(surface, r, g, b):
     arr[:, :, 0] = r
     arr[:, :, 1] = g
     arr[:, :, 2] = b
-
 
 
 if __name__ == '__main__':

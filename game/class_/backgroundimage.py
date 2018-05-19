@@ -9,6 +9,7 @@ class BackGroundImage:
     this has no effect on the stage itself, 
     but is just for decoration.
     """
+
     def __init__(self, name, topright, priority=1, put_on_terrain=None):
         self.toprgight = topright
         self.image = PICS['backgrounds'][name]
@@ -34,12 +35,12 @@ class BackGroundImage:
         """
         draw all of the current instances to surf
         """
-        orderedpairs = sorted([(ins.priority, ins) for ins in cls.instances], key=lambda x: x[0])
+        orderedpairs = sorted(
+            [(ins.priority, ins) for ins in cls.instances], key=lambda x: x[0])
 
         for pair in orderedpairs:
             pair[1].draw(surf)
 
+
 if __name__ == '__main__':
     print(BackGroundImage('hut', (0, 0)).instances)
-
-

@@ -37,6 +37,7 @@ def main():
         pg.display.flip()
         CLOCK.tick(FPS)
 
+
 def drag_if_supposed_to(rect, event, drag=False):
     if event.type == MOUSEBUTTONDOWN:
         if event.button == RIGHT_CLICK and rect.collidepoint(event.pos):
@@ -57,4 +58,6 @@ def drag_if_supposed_to(rect, event, drag=False):
             rect.y = mouse_y + off_y
 
     return drag
+
+
 main()

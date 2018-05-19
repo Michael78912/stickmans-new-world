@@ -19,6 +19,7 @@ except ImportError:
     from .events import Quit, SayHello
     from .terrain import Terrain
 
+
 class SMRSprite:
     sizey = 0
     sizex = 0
@@ -29,10 +30,7 @@ class SMRSprite:
     because it is called by start_thread.
     """
 
-    def __init__(self,
-           main_game_state,
-           event_queue,
-           pos):
+    def __init__(self, main_game_state, event_queue, pos):
         self.main_game_state = main_game_state
         self.event_queue = event_queue
         self._internal_events = Queue()
@@ -77,14 +75,15 @@ class SMRSprite:
         """
         template = terrain.terrain2dlist_texts[terrain.template]
         blk_size = template['size']
-        x_line_size_pixels = len(template['text'][:, x]) * blk_size if terrain.use_numpy else len([i[0] for i in template['text']]) * blk_size
+        x_line_size_pixels = len(
+            template['text'][:, x]) * blk_size if terrain.use_numpy else len(
+                [i[0] for i in template['text']]) * blk_size
         y_line_size_pixels = len(template['text'][0]) * blk_size
         new_x = x * blk_size
         new_y = y * blk_size
         assert new_x < x_line_size_pixels and new_y < y_line_size_pixels, 'the coordinate is too big for the screen'
         return (new_x - cls.sizex, new_y - cls.sizey)
         # this is all correct so far
-        
 
     def update_coords(self, pos):
         self.topleft = pos
@@ -111,7 +110,8 @@ class SMRSprite:
         starts a new thread and redirects it to _mainloop.
         daemon is default to true.
         """
-        self.mainthread = threading.Thread(target=self._mainloop, daemon=daemon)
+        self.mainthread = threading.Thread(
+            target=self._mainloop, daemon=daemon)
         self.mainthread.start()
 
     def _mainloop(self):
@@ -123,6 +123,7 @@ class SMRSprite:
 
             # used for debugging
             print(threading.current_thread())
+
 
 if __name__ == '__main__':
     d = Terrain('dirt', 'test', use_numpy=True)

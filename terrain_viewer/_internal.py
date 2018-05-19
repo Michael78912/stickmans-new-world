@@ -11,9 +11,7 @@ import sys
 import pygame as pg
 from pygame.locals import *
 
-
 import random
-
 
 print(sys.executable, 'HOWDY HO')
 
@@ -23,7 +21,6 @@ DIR = '.'
 
 __author__ = 'NOT Michael Gill'
 __version__ = '0.0'
-
 
 VALID_ENEMY_HEADS = ['smile', 'frown', 'triangle']
 col = {
@@ -45,6 +42,7 @@ col = {
     'gray': (211, 211, 211),
 }
 
+
 def gather_pics(dir='.'):
 
     dictionary = {}
@@ -54,7 +52,8 @@ def gather_pics(dir='.'):
             dictionary[item] = gather_pics(os.path.join(dir, item))
 
         elif item.split(".")[-1] in ('png', 'jpg'):
-            dictionary[item.split('.')[0]] = pg.image.load(os.path.join(dir, item))
+            dictionary[item.split('.')[0]] = pg.image.load(
+                os.path.join(dir, item))
 
     return dictionary
 
@@ -62,16 +61,12 @@ def gather_pics(dir='.'):
 #PICS = _gather_pics(os.path.join(os.path.dirname(sys.executable), 'data'))
 #PICS = _gather_pics('data')
 TDIR = os.path.join(DIR, 'terrains')
-
-
 """characters.py- a module of subclasses
 each of these classes is a class of stickman from 
 stickmanranger.
 """
 
-DEFAULT_STATS =(50, 0, 0, 0, 0)
-
-
+DEFAULT_STATS = (50, 0, 0, 0, 0)
 
 
 def _Box(size, colour, pos, surface, alpha=None, image=None) -> tuple:
@@ -92,4 +87,3 @@ def _Box(size, colour, pos, surface, alpha=None, image=None) -> tuple:
         surface.blit(image, pos)
 
     return MyRect(new_surf.get_rect(topleft=pos)), new_surf
-

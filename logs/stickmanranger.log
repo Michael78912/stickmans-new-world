@@ -47,3 +47,4 @@
 2018-05-12 18:06:08.95 created joker.py and drop.py, and did some work on enemy.py, and database.py 
 2018-05-14 20:31:51.36 did a few random fixes, created statusailment.py, and inventory.py, which i am still working on a bit2018-05-15 20:22:17.76 got the method in InventoryHandler working. dealing with mutable lists and for some reason i could not figure out what was going on! also started learning JS (something i should have done a long time ago) :)   
 2018-05-16 17:46:03.90 created backgroundimage.py, made inventory.py a bit better thanks to Will, edited terrain.py to look a bit nicer and incorporate background images as well 
+2018-05-18 20:27:10.15 mainly fixed up a bunch of things, made main.py runnable again after all the work i've done on other things (It has been literally since like december since i wroked on that last) and did a tiny bit of work on a bunch of things. made database.py runnable, and formatted all my code nicely. 
